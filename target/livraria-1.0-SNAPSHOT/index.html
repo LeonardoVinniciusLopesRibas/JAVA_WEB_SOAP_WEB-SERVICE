@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <form id="livroForm">
+            <label for="nome">Nome do Livro:</label>
+            <input type="text" id="nome" name="nome" required><br>
+
+            <label for="anoLancamento">Ano de Lançamento:</label>
+            <input type="date" id="anoLancamento" name="anoLancamento" required><br>
+
+            <label for="numeroPaginas">Número de Páginas:</label>
+            <input type="number" id="numeroPaginas" name="numeroPaginas" required><br>
+
+            <label for="editora_id">Informe o id da editora:</label>
+            <input type="number" id="editora_id" name="editora_id" required><br>
+
+            <label for="autor_id">Informe o id do autor</label>
+            <input type="number" id="autor_id" name="autor_id" required><br>
+
+            <button type="submit">Inserir Livro</button>
+        </form>
+
+        <script>
+            document.getElementById("livroForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let formData = new FormData(this);
+
+                fetch('http://localhost:8080/livraria/inserir', {
+                    method: 'POST',
+                    body: formData
+                })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Livro inserido com sucesso:', data);
+                            // Faça qualquer ação adicional aqui, como limpar o formulário ou exibir uma mensagem de sucesso
+                        })
+                        .catch(error => {
+                            console.error('Erro ao inserir livro:', error);
+                            // Trate qualquer erro que ocorra durante a solicitação
+                        });
+            });
+        </script>
+
+    </body>
+</html>
