@@ -1,5 +1,7 @@
 package com.mycompany.livraria.repository;
 
+import com.mycompany.exception.AutorizacaoException;
+import com.mycompany.exception.ValidacaoException;
 import com.mycompany.livraria.infrastructure.ConnectionFactory;
 import com.mycompany.livraria.model.Livro;
 import com.mycompany.livraria.model.Pessoa;
@@ -17,7 +19,7 @@ public class LivroRepository {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
 
-    public Livro insert(Livro livro) throws SQLException {
+    public Livro insert(Livro livro) throws SQLException, ValidacaoException, AutorizacaoException {
         query = "INSERT INTO livro (nome, dt_lancto, nr_paginas, editora_id, autor_id) VALUES (?,?,?,?,?)";
 
         try {
@@ -51,7 +53,7 @@ public class LivroRepository {
         return livro;
     }
 
-    public ArrayList<Livro> listAll() throws SQLException {
+    public ArrayList<Livro> listAll() throws SQLException, ValidacaoException, AutorizacaoException {
         ArrayList<Livro> livros = new ArrayList<>();
         query = "SELECT l.id, l.nome, l.dt_lancto, l.nr_paginas, e.nome as editora_nome, a.nome as autor_nome "
                 + "FROM livro l "
@@ -94,7 +96,7 @@ public class LivroRepository {
         return livros;
     }
 
-    public ArrayList<Livro> findLivro(String nome) throws SQLException {
+    public ArrayList<Livro> findLivro(String nome) throws SQLException, ValidacaoException, AutorizacaoException {
         ArrayList<Livro> livros = new ArrayList<>();
         query = "SELECT l.id, l.nome, l.dt_lancto, l.nr_paginas, e.nome as editora_nome, a.nome as autor_nome "
                 + "FROM livro l "
@@ -139,7 +141,7 @@ public class LivroRepository {
         return livros;
     }
 
-    public Livro findById(int id) throws SQLException {
+    public Livro findById(int id) throws SQLException, ValidacaoException, AutorizacaoException {
         Livro livro = null;
         query = "SELECT l.id, l.nome, l.dt_lancto, l.nr_paginas, e.nome as editora_nome, a.nome as autor_nome "
                 + "FROM livro l "
@@ -182,7 +184,7 @@ public class LivroRepository {
         return livro;
     }
 
-    public void update(Livro livro) throws SQLException {
+    public void update(Livro livro) throws SQLException, ValidacaoException, AutorizacaoException {
         query = "UPDATE livro SET nome = ?, dt_lancto = ?, nr_paginas = ?, editora_id = ?, autor_id = ? WHERE id = ?";
 
         try {
@@ -206,7 +208,7 @@ public class LivroRepository {
         }
     }
 
-    public void delete(int id) throws SQLException {
+    public void delete(int id) throws SQLException, ValidacaoException, AutorizacaoException {
         query = "DELETE FROM livro WHERE id = ?";
 
         try {

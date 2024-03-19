@@ -1,5 +1,7 @@
 package com.mycompany.livraria.repository;
 
+import com.mycompany.exception.AutorizacaoException;
+import com.mycompany.exception.ValidacaoException;
 import com.mycompany.livraria.infrastructure.ConnectionFactory;
 import com.mycompany.livraria.model.Livro;
 import com.mycompany.livraria.model.Pessoa;
@@ -16,7 +18,7 @@ public class PessoaRepository {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
     
-    public ArrayList<Pessoa> listAll()throws SQLException{
+    public ArrayList<Pessoa> listAll()throws SQLException, ValidacaoException, AutorizacaoException{
 
         ArrayList<Pessoa> pessoa = new ArrayList<>();
         query = "SELECT * FROM pessoa";
@@ -48,7 +50,7 @@ public class PessoaRepository {
         return pessoa;
     }
 
-    public Pessoa findById(int id)throws SQLException {
+    public Pessoa findById(int id)throws SQLException, ValidacaoException, AutorizacaoException {
         Pessoa p = new Pessoa();
         query = "SELECT * FROM pessoa WHERE id = ?";
         
@@ -77,7 +79,7 @@ public class PessoaRepository {
             
     }
 
-    public Pessoa insert(Pessoa pessoa)throws SQLException {
+    public Pessoa insert(Pessoa pessoa)throws SQLException, ValidacaoException, AutorizacaoException {
 
         query = "INSERT INTO pessoa (nome) VALUES (?)";
         
@@ -104,7 +106,7 @@ public class PessoaRepository {
         return pessoa;
     }
 
-    public void update(Pessoa pessoa) throws SQLException{
+    public void update(Pessoa pessoa) throws SQLException, ValidacaoException, AutorizacaoException{
 
         query = "UPDATE pessoa SET nome = ? WHERE id = ?";
         

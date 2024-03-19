@@ -4,6 +4,8 @@
  */
 package com.mycompany.livraria.services;
 
+import com.mycompany.exception.AutorizacaoException;
+import com.mycompany.exception.ValidacaoException;
 import com.mycompany.livraria.model.Livro;
 import com.mycompany.livraria.model.Pessoa;
 import com.mycompany.livraria.repository.PessoaRepository;
@@ -18,32 +20,32 @@ public class PessoaService {
 
     PessoaRepository pr = new PessoaRepository();
     
-    public ArrayList<Pessoa> listAll() throws SQLException{
+    public ArrayList<Pessoa> listAll() throws SQLException, ValidacaoException, AutorizacaoException{
 
         return pr.listAll();
 
     }
 
-    public Pessoa findById(int id) throws SQLException{
+    public Pessoa findById(int id) throws SQLException, ValidacaoException, AutorizacaoException{
 
         return pr.findById(id);
 
     }
 
-    public Pessoa insert(Pessoa pessoa) throws SQLException{
+    public Pessoa insert(Pessoa pessoa) throws SQLException, ValidacaoException, AutorizacaoException{
 
         return pr.insert(pessoa);
 
     }
 
-    public Pessoa atualizar(Pessoa pessoa) throws SQLException{
+    public Pessoa atualizar(Pessoa pessoa) throws SQLException, ValidacaoException, AutorizacaoException{
 
         pr.update(pessoa);
         return pessoa;
 
     }
 
-    public void deletar(int id) throws SQLException{
+    public void deletar(int id) throws SQLException, ValidacaoException, AutorizacaoException{
 
         pr.delete(id);
 
