@@ -1,11 +1,13 @@
-com\mycompany\livraria\services\PessoaService.class
+com\mycompany\exception\AutorizacaoException.class
 com\mycompany\livraria\interfaces\PessoaInterfaces.class
-com\mycompany\livraria\LivrariaWebService.class
 com\mycompany\livraria\repository\PessoaRepository.class
 com\mycompany\livraria\services\LivrariaService.class
-com\mycompany\livraria\infrastructure\ConnectionFactory.class
 com\mycompany\livraria\repository\LivroRepository.class
-com\mycompany\livraria\interfaces\LivrariaInterfaces.class
+com\mycompany\exception\ValidacaoException.class
 com\mycompany\livraria\model\Pessoa.class
+com\mycompany\livraria\services\PessoaService.class
+com\mycompany\livraria\LivrariaWebService.class
+com\mycompany\livraria\infrastructure\ConnectionFactory.class
+com\mycompany\livraria\interfaces\LivrariaInterfaces.class
 com\mycompany\livraria\model\Livro.class
 com\mycompany\livraria\PessoaWebService.class
